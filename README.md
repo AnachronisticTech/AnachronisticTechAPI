@@ -1,3 +1,3 @@
-# AT-API
+# AnachronisticTech API
 
-A description of this package.
+Package representing AnachronisticTech website and API. Encapsulates logic and web assets.
