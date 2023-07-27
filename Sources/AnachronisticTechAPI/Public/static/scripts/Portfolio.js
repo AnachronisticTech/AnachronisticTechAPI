@@ -29,10 +29,10 @@ class Portfolio {
                     item.querySelector(".icon").src = (element.icon ? `/AnachronisticTech/content/images/${element.icon}` : "")
                     var links = ""
                     if (element.github) {
-                        links += `<a href="${element.github}"><img src="/AnachronisticTech/images/icons/github.svg"></a>`
+                        links += `<a href="${element.github}"><img src="/AnachronisticTech/static/images/icons/github.svg"></a>`
                     }
                     if (element.web) {
-                        links += `<a href="${element.web}"><img src="/AnachronisticTech/images/icons/world.png"></a>`
+                        links += `<a href="${element.web}"><img src="/AnachronisticTech/static/images/icons/world.png"></a>`
                     }
                     item.querySelector(".links").innerHTML = links
 
