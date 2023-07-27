@@ -12,6 +12,7 @@ struct CreatePost: Migration {
     func prepare(on database: Database) -> EventLoopFuture<Void> {
         return database
             .schema(Post.schema)
+            .ignoreExisting()
             .field("id", .int, .identifier(auto: true))
             .field("icon", .string)
             .field("type", .int, .required)

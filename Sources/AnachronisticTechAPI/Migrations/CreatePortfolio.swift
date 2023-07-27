@@ -12,6 +12,7 @@ struct CreatePortfolio: Migration {
     func prepare(on database: Database) -> EventLoopFuture<Void> {
         return database
             .schema(PortfolioItem.schema)
+            .ignoreExisting()
             .field("id", .int, .identifier(auto: true))
             .field("icon", .string)
             .field("type", .int, .required)
