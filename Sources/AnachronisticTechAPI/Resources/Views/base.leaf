@@ -4,7 +4,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/AnachronisticTech/static/images/icons/favicon.ico" type="image/x-icon">
+        #if(devMode):
         <title>DEV - #(title) | Anachronistic Tech</title>
+        #else:
+        <title>#(title) | Anachronistic Tech</title>
+        #endif
 
         <!-- Default styles -->
         <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,700|Quicksand:400,500" rel="stylesheet">
@@ -30,6 +34,10 @@
     </head>
 
     <body>
+        #if(devMode):
+        <div class="dev-mode">DEV MODE</div>
+        #endif
+
         <!-- Header and menu -->
         <h1 id="title">Anachronistic Technology</h1>
         <nav class="item-container">

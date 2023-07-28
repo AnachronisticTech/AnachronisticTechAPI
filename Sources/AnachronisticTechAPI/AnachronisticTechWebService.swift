@@ -14,10 +14,7 @@ public struct AnachronisticTechWebService : API, FileServer, LeafViewProvider, M
     public var resourcesDirectoryPath: String
     public var resourcesDirectoryPathComponent: String
 
-    public var routeCollections: [RouteCollection] = [
-        AnachronisticTech(),
-        AnachronisticTechAPI()
-    ]
+    public var routeCollections: [RouteCollection]
 
     public var migrations: [Migration] = [
         CreatePost(),
@@ -28,7 +25,8 @@ public struct AnachronisticTechWebService : API, FileServer, LeafViewProvider, M
         publicPath: String,
         resourcesPath: String,
         pathComponent: String,
-        logBehaviour: LogBehaviour = .none
+        logBehaviour: LogBehaviour = .none,
+        devMode: Bool = false
     )
     {
         publicDirectoryPath = publicPath
@@ -36,5 +34,9 @@ public struct AnachronisticTechWebService : API, FileServer, LeafViewProvider, M
         publicDirectoryPathComponent = pathComponent
         resourcesDirectoryPathComponent = pathComponent
         self.logBehaviour = logBehaviour
+        routeCollections = [
+            AnachronisticTech(pathComponent: pathComponent, devMode: devMode),
+            AnachronisticTechAPI()
+        ]
     }
 }
