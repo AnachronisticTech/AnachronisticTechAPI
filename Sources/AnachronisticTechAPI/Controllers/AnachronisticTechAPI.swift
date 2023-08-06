@@ -72,9 +72,7 @@ public struct AnachronisticTechAPI: RouteCollection {
             throw Abort(.custom(code: 47, reasonPhrase: "couldn't decode data"))
         }
 
-        guard let secret = Environment.get("UPLOAD_SECRET"), try Bcrypt.verify(payload.secret, created: secret) else {
-            throw Abort(.unauthorized)
-        }
+        try AnachronisticTechWebService.validate(secret: payload.secret)
 
         let data = Data(buffer: payload.file.data)
 
@@ -106,9 +104,7 @@ public struct AnachronisticTechAPI: RouteCollection {
             throw Abort(.custom(code: 47, reasonPhrase: "error decoding payload"))
         }
 
-        guard let secret = Environment.get("UPLOAD_SECRET"), try Bcrypt.verify(payload.secret, created: secret) else {
-            throw Abort(.unauthorized)
-        }
+        try AnachronisticTechWebService.validate(secret: payload.secret)
 
         let markdown = String(data: data, encoding: .utf8)!
             .replacingOccurrences(of: "\r\n", with: "\n")
@@ -154,9 +150,7 @@ public struct AnachronisticTechAPI: RouteCollection {
             throw Abort(.custom(code: 47, reasonPhrase: "error getting id or decoding payload"))
         }
 
-        guard let secret = Environment.get("UPLOAD_SECRET"), try Bcrypt.verify(payload.secret, created: secret) else {
-            throw Abort(.unauthorized)
-        }
+        try AnachronisticTechWebService.validate(secret: payload.secret)
 
         return Post
             .find(id, on: req.db)
@@ -265,9 +259,7 @@ public struct AnachronisticTechAPI: RouteCollection {
             throw Abort(.custom(code: 47, reasonPhrase: "error decoding payload"))
         }
 
-        guard let secret = Environment.get("UPLOAD_SECRET"), try Bcrypt.verify(payload.secret, created: secret) else {
-            throw Abort(.unauthorized)
-        }
+        try AnachronisticTechWebService.validate(secret: payload.secret)
 
         let markdown = String(data: data, encoding: .utf8)!
             .replacingOccurrences(of: "\r\n", with: "\n")
@@ -312,9 +304,7 @@ public struct AnachronisticTechAPI: RouteCollection {
             throw Abort(.custom(code: 47, reasonPhrase: "error getting id or decoding payload"))
         }
 
-        guard let secret = Environment.get("UPLOAD_SECRET"), try Bcrypt.verify(payload.secret, created: secret) else {
-            throw Abort(.unauthorized)
-        }
+        try AnachronisticTechWebService.validate(secret: payload.secret)
 
         return PortfolioItem
             .find(id, on: req.db)

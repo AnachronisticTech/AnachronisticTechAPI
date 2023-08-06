@@ -39,4 +39,12 @@ public struct AnachronisticTechWebService : API, FileServer, LeafViewProvider, M
             AnachronisticTechAPI()
         ]
     }
+
+    internal static func validate(secret payloadSecret: String) throws
+    {
+        guard let secret = Environment.get("UPLOAD_SECRET"), try Bcrypt.verify(payloadSecret, created: secret) else
+        {
+            throw Abort(.unauthorized)
+        }
+    }
 }
